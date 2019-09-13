@@ -1,0 +1,47 @@
+
+#!/bin/usr/bash
+
+
+trap 'printf "\n";stop;exit 1' 2
+
+
+dependencies() {
+
+command -v php > /dev/null 2>&1 || { echo >&2 "I require php but it's not installed. Install it. Aborting."; exit 1; }
+command -v pyhton2 > /dev/null 2>&1 || { echo >&2 "I require python2 but it's not installed. Install it. Aborting."; exit 1; }
+
+}
+
+
+stop() {
+
+checphp=$(ps aux | grep -o "php" | head -n1)
+checkclang=$(ps aux | grep -o "clang" | head -n1)
+if [[ $checkphp == *'php'* ]]; then
+pkill -f -2 php > /dev/null 2>&1
+killall -2 php > /dev/null 2>&1
+fi
+if [[ $checkclang == *'clang'* ]]; then
+pkill -f -2 clang> /dev/null 2>&1
+killall clang > /dev/null 2>&1
+fi
+
+}
+
+
+printf '''\e[1;91m
+  ___                            ___
+ ||  |   ___         ___        ||  |
+ || _|__/  _\_______/  _\_______|| _|
+ ||(___(  (________(  (_________||((_)
+ ||  |  \___/       \___/       ||  |
+ ||  |         ___              ||  |
+ || _|________/  _\_____________|| _|
+ \e[1;97m||(_________(  (_______________||((_)
+ ||  |        \___/             ||  | 
+ ||  |                          ||  |
+ ||  |                          ||  |
+ ||  |                          ||  | \n '''
+printf "\n\e[1;91m Author : \e[1;97mDirgantara \e[1;97m\n"
+printf "\e[1;91m Support: \e[1;97mMr.D4NG3R ./ Xr00T 3M7 \e[1;97m\n"
+printf "\e[1;91m Team   : \e[1;97m403-Forbidden Team \e[1;97m\n"
